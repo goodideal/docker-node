@@ -62,7 +62,7 @@ RUN set -ex \
 
 ### for project, install PM2 and set default path
 
-RUN npm install pm2@${PM2_VERSION} \
+RUN npm install -g pm2@${PM2_VERSION} \
   && mkdir -p /opt/app
 WORKDIR /opt/app
 
