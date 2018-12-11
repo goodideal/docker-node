@@ -4,6 +4,7 @@ RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
 ENV NODE_VERSION 8.11.4
+ENV PM2_VERSION 3.2.2
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -59,7 +60,10 @@ RUN set -ex \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
-RUN mkdir -p /opt/app
+### for project, install PM2 and set default path
+
+RUN npm install pm2@${PM2_VERSION} \
+  && mkdir -p /opt/app
 WORKDIR /opt/app
 
 CMD [ "node" ]
