@@ -3,7 +3,7 @@ FROM buildpack-deps:stretch
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION 8.11.4
+ENV NODE_VERSION 8.9.4
 ENV PM2_VERSION 3.2.2
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
